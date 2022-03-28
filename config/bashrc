@@ -1,0 +1,6 @@
+
+# Aliases of the application
+alias main="python3 publicadores/main.py"
+alias monitor="python3 suscriptores/monitor.py"
+alias notifier="python3 suscriptores/notifier.py"
+alias record="python3 suscriptores/record.py"

@@ -1,0 +1,18 @@
+version: '3.4'
+
+services:
+  smam-app:
+      build:
+        context: .
+        dockerfile: ./Dockerfile
+      container_name: smam-app
+      depends_on:
+        - rabbitmq-server
+      volumes:
+        - ./smam-app/:/smam-app/
+  rabbitmq-server:
+      image: rabbitmq:3-management
+      container_name: smam-rabbitmq-server
+      ports:
+        - 5672:5672
+        - 15672:15672
