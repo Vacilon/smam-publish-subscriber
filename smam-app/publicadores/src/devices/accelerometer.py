@@ -27,16 +27,17 @@
 #
 #-------------------------------------------------------------------------
 from faker import Faker
+import random
 
 class Accelerometer:
 
     def __init__(self):
         fake = Faker()
         self.id = fake.numerify(text="%%######")
+        self.producer = "Arduino"
+        self.model = "Arduino Esplora - A000095"
 
     def run(self):
-        """
-        una caída se puede determinar de acuerdo al posicionamiento
-        de la persona en un determinado momento
-        """
-        pass
+        self.Xaxis = random.uniform(10, 20)
+        self.Yaxis = random.uniform(10, 20)
+        self.Zaxis = random.uniform(10, 140)
