@@ -9,10 +9,9 @@
 #   Este archivo define el punto de ejecución del Publicador
 #
 #-------------------------------------------------------------------------
-import random
+import random, math, time
 from src.patient import Patient
 from src.helpers.publicador import publish
-import time
 
 if __name__ == '__main__':
     print("Iniciando simulación del sistema SMAM...")
@@ -21,19 +20,28 @@ if __name__ == '__main__':
     print(f"actualmente hay {total_patients} adultos mayores...")
     for _ in range(total_patients):
         older_patients.append(Patient())
-    print("Comenzando monitoreo de signos vitales...")
+    print("Comenzando monitoreo...")
     print()
     for _ in range(20):
+        timer_time = random.choice([8, 12])
+        medicine = random.choice(['Paracetamol', 'Dipirona magnésica', 'Dipirona hioscina', 'Tramadol', 'Antidepresivo', 'Aspirina', 'Antiarritmico', 'Diuretico'])
+
         for patient in older_patients:
-            print("extrayendo signos vitales...")
+            print("Extrayendo datos del adulto mayor...")
             patient.check_devices()
-            print()
-            print("analizando signos vitales...")
-            if patient.wearable.blood_pressure > 110 or patient.wearable.temperature > 37.5 or patient.wearable.heart_rate > 110:
-                print("anomalía detectada, notificando signos vitales...")
-                publish('notifier', patient.to_json())
-            print()
-            print("actualizando expediente...")
-            publish('record', patient.to_json())
+            print("Analizando datos del adulto mayor...")
+
+            if patient.timer.time==timer_time and patient.timer.medicine==medicine:
+                patient.timer.medicine_time = 1
+
+            print("Notificando eventos detectados...")
             publish('monitor', patient.to_json())
+            publish('notifier', patient.to_json())
+            print()
+
+            if patient.wearable.blood_pressure > 110 or patient.wearable.temperature > 37.5 or patient.wearable.heart_rate > 110:
+                print("actualizando expediente...")
+                publish('record', patient.to_json())
+            print()
+
             time.sleep(1)
