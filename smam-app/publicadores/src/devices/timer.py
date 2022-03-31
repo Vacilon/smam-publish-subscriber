@@ -39,12 +39,7 @@ class Timer:
         self.id = fake.numerify(text="%%######")
 
     def run(self):
-        """
-        el suministro de un medicamento determinado
-        se realiza al cumplirse un horario establecido
-        para un grupo de adultos mayores
-
-        un ejemplo de horario puede ser cada 8 horas
-        -> numero_random % 8 == 0
-        """
+        self.time = random.choice([8, 12])
+        self.dose = random.choice(['10 mg','20 ml'])
         self.medicine = random.choice(['Paracetamol', 'Dipirona magnésica', 'Dipirona hioscina', 'Tramadol', 'Antidepresivo', 'Aspirina', 'Antiarritmico', 'Diuretico'])
+        self.medicine_time = 0
