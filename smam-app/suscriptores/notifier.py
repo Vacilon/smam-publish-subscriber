@@ -62,15 +62,18 @@
 #           +------------------------+--------------------------+-----------------------+
 #
 #-------------------------------------------------------------------------
+from email import message
 import json, time, pika, sys
+from helpers.warning import Warning
 import telepot
 
 class Notifier:
 
     def __init__(self):
         self.topic = "notifier"
-        self.token = ""
-        self.chat_id = ""
+        self.token = "5112577859:AAEcbHUf_cAICXVc8F2BA8y6XnESmRJkkEk"
+        self.chat_id = "-650846930"
+        self.warning = Warning()
 
     def suscribe(self):
         print("Inicio de gestión de notificaciones...")
@@ -90,13 +93,15 @@ class Notifier:
             sys.exit("Conexión finalizada...")
 
     def callback(self, ch, method, properties, body):
-        print("enviando notificación de signos vitales...")
+        print("Enviando notificaciones...")
         if self.token and self.chat_id:
             data = json.loads(body.decode("utf-8"))
-            message = f"ADVERTENCIA!!!\n[{data['wearable']['date']}]: asistir al paciente {data['name']} {data['last_name']}...\nssn: {data['ssn']}, edad: {data['age']}, temperatura: {round(data['wearable']['temperature'], 1)}, ritmo cardiaco: {data['wearable']['heart_rate']}, presión arterial: {data['wearable']['blood_pressure']}, dispositivo: {data['wearable']['id']}"
+            messages = self.warning.select_warning_notifier(data)
             bot = telepot.Bot(self.token)
-            bot.sendMessage(self.chat_id, message)
-        time.sleep(1)
+            for message in messages:
+                if message:
+                    bot.sendMessage(self.chat_id, message)
+        time.sleep(4)
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
 if __name__ == '__main__':

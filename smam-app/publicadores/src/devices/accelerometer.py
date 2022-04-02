@@ -38,6 +38,6 @@ class Accelerometer:
         self.model = "Arduino Esplora - A000095"
 
     def run(self):
-        self.Xaxis = random.uniform(10, 20)
-        self.Yaxis = random.uniform(10, 20)
-        self.Zaxis = random.uniform(10, 140)
+        self.Xaxis = random.randint(10, 20)
+        self.Yaxis = random.randint(10, 20)
+        self.Zaxis = random.randint(10, 140)

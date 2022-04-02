@@ -9,7 +9,7 @@
 #   Este archivo define el punto de ejecución del Publicador
 #
 #-------------------------------------------------------------------------
-import random, math, time
+import random, time
 from src.patient import Patient
 from src.helpers.publicador import publish
 
@@ -20,10 +20,10 @@ if __name__ == '__main__':
     print(f"actualmente hay {total_patients} adultos mayores...")
     for _ in range(total_patients):
         older_patients.append(Patient())
-    print("Comenzando monitoreo...")
+    print("comenzando monitoreo...")
     print()
     for _ in range(20):
-        timer_time = random.choice([8, 12])
+        timer_time = random.choice([4, 8])
         medicine = random.choice(['Paracetamol', 'Dipirona magnésica', 'Dipirona hioscina', 'Tramadol', 'Antidepresivo', 'Aspirina', 'Antiarritmico', 'Diuretico'])
 
         for patient in older_patients:
@@ -31,16 +31,15 @@ if __name__ == '__main__':
             patient.check_devices()
             print("Analizando datos del adulto mayor...")
 
-            if patient.timer.time==timer_time and patient.timer.medicine==medicine:
+            if (timer_time % patient.timer.time == 0) and patient.timer.medicine==medicine:
                 patient.timer.medicine_time = 1
 
             print("Notificando eventos detectados...")
             publish('monitor', patient.to_json())
             publish('notifier', patient.to_json())
-            print()
 
             if patient.wearable.blood_pressure > 110 or patient.wearable.temperature > 37.5 or patient.wearable.heart_rate > 110:
-                print("actualizando expediente...")
+                print("Actualizando expediente...")
                 publish('record', patient.to_json())
             print()
 

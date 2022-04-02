@@ -39,7 +39,7 @@ class Timer:
         self.id = fake.numerify(text="%%######")
 
     def run(self):
-        self.time = random.choice([8, 12])
+        self.time = random.choice([4, 8])
         self.dose = random.choice(['10 mg','20 ml'])
         self.medicine = random.choice(['Paracetamol', 'Dipirona magnésica', 'Dipirona hioscina', 'Tramadol', 'Antidepresivo', 'Aspirina', 'Antiarritmico', 'Diuretico'])
         self.medicine_time = 0

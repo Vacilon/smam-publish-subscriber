@@ -71,7 +71,7 @@ class Monitor:
         self.warning = Warning()
 
     def suscribe(self):
-        print("Inicio de monitoreo de signos vitales...")
+        print("Inicio de monitoreo...")
         print()
         self.consume(queue=self.topic, callback=self.callback)
 
