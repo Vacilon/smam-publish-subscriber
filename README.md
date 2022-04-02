@@ -26,26 +26,26 @@ Este repositorio contiene los siguientes directorios y archivos:
     |  ├── bashrc                                 # archivo de configuración para el contenedor del sistema
     ├── smam-app                                  # carpeta de los elementos que integran el sistema
     |  ├── docs                                   # carpeta de documentación
-    |  │  ├── view.png                            # vista de solución del mantenimiento evolutivo
+    |     ├── view.png                            # vista de solución del mantenimiento evolutivo
     |  ├── publicadores                           # publicadores del sistema
-    |  |  ├── src                                 # código fuente de los publicadores
-    |  │  |  ├── devices                          # archivos de definición de dispositivos
-    |  │  |  |  ├── accelerometer.py              # simulador del dispositivo de hardware acelerómetro
-    |  │  |  |  |  ├── timer.py                   # simulador del dispositivo de hardware cronómetro
-    |  │  |  |  |  ├── xiaomi_my_band.py          # simulador de dispositivo de hardware Xiaomi
-    |  │  |  |  ├── helpers                       # archivos auxiliares del sistema
-    |  │  |  |  |  ├── __init__.py                # indica la definición de módulo python
-    |  │  |  |  |  ├── publicador.py              # archivo auxiliar de comunicación con el distribuidor de mensajes 
-    |  │  |  |  ├── __init__.py                   # indica la definición de módulo python
-    |  │  |  |  ├── patient.py                    # representación de un adulto mayor en el sistema
-    |  |  |  ├── main.py                          # archivo principal de ejecución de publicadores
+    |     ├── src                                 # código fuente de los publicadores
+    |        ├── devices                          # archivos de definición de dispositivos
+    |           ├── accelerometer.py              # simulador del dispositivo de hardware acelerómetro
+    |              ├── timer.py                   # simulador del dispositivo de hardware cronómetro
+    |              ├── xiaomi_my_band.py          # simulador de dispositivo de hardware Xiaomi
+    |           ├── helpers                       # archivos auxiliares del sistema
+    |              ├── __init__.py                # indica la definición de módulo python
+    |              ├── publicador.py              # archivo auxiliar de comunicación con el distribuidor de mensajes 
+    |           ├── __init__.py                   # indica la definición de módulo python
+    |           ├── patient.py                    # representación de un adulto mayor en el sistema
+    |        ├── main.py                          # archivo principal de ejecución de publicadores
     |  ├── suscriptores                           # suscriptores del sistema
-    |  |  ├── helpers                             # archivos auxiliares de los suscriptores
-    |  |  |  ├── __init__.py                      # indica la definición de módulo
-    |  |  |  ├── warning.py                       # filtro de eventos para seleccionar la advertencia correspondiente
-    |  │  ├── monitor.py                          # suscriptor que muestra en pantalla las alertas del sistema
-    |  │  ├── notifier.py                         # suscriptor que notifica a un(a) enfermero(a) en particular
-    |  │  ├── record.py                           # suscriptor que actualiza el expediente de un adulto mayor en particular
+    |     ├── helpers                             # archivos auxiliares de los suscriptores
+    |        ├── __init__.py                      # indica la definición de módulo
+    |        ├── warning.py                       # filtro de eventos para seleccionar la advertencia correspondiente
+    |     ├── monitor.py                          # suscriptor que muestra en pantalla las alertas del sistema
+    |     ├── notifier.py                         # suscriptor que notifica a un(a) enfermero(a) en particular
+    |     ├── record.py                           # suscriptor que actualiza el expediente de un adulto mayor en particular
     |  ├── .gitignore                             # exclusiones de git
     |  ├── requirements.txt                       # dependencias del sistema
     ├── docker-compose.yml                        # archivo para comunicar el sistema con el servicio de RabbitMQ
